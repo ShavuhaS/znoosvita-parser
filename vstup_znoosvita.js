@@ -1,3 +1,5 @@
+//this function accepts one argument *mark* to display a list of people with an average of *mark* and higher
+//e.g. if your mark is 180, you may call bruh(180) in order to see the statistics on people who beat you in the rating list, and how many is it in comparison to total numbers of applications
 function bruh(mark) {
     let rows = document.querySelectorAll('table tr');
     let orderedTable = document.querySelectorAll('.table-of-specs-item')
@@ -15,7 +17,7 @@ function bruh(mark) {
     const markSize = 9;
     const nameSize = 24;
     const prioritySize = 3;
-
+    //count different types of applications
     orderedTable.childNodes.forEach( (item, ind) => {
         if(item.nodeType === 3) {
             if(item.textContent.includes('квота 1')) {
@@ -34,6 +36,7 @@ function bruh(mark) {
             }
         }
     });
+    // traverse throught the columns of each row to get needed data
     rows.forEach( (row) => {
         let columns = row.querySelectorAll('td');
         let currMark = -1, name = '', budget = '', priority = -1, quota = '';
@@ -56,10 +59,11 @@ function bruh(mark) {
             }
         }
     })
+    //sort in descending order
     picked.sort((a, b) => {
         if(a[1] > b[1]) return -1;
     });
-
+    //everything starting from here is responsible for building a pretty table in the console
     function drawLine() {
         console.log('-'.repeat(markSize + nameSize + prioritySize + 4))
     }
